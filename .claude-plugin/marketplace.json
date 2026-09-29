@@ -1,0 +1,18 @@
+{
+  "name": "raviramcharan",
+  "owner": {
+    "name": "Ravi Ramcharan"
+  },
+  "metadata": {
+    "description": "Personal Claude Code plugins."
+  },
+  "plugins": [
+    {
+      "name": "dev-frontend",
+      "source": "./plugins/dev-frontend",
+      "description": "Front-end workflow for Jira-based e-commerce projects: user stories, ticket refinement, branch start, test scenarios, FE quality gate, Jira developer notes, sprint risks and growth log.",
+      "version": "1.0.0",
+      "homepage": "https://github.com/raviramcharan/dev-frontend"
+    }
+  ]
+}
