@@ -1,0 +1,11 @@
+{
+  "name": "dev-frontend",
+  "version": "1.0.0",
+  "description": "Front-end workflow for Jira-based e-commerce projects (Hyvä/Magento, Shopware, Shopify, Drupal): user stories, ticket refinement (DoR), branch start, test scenarios, FE quality gate, Jira developer notes, sprint risks and growth log. Works standalone or on top of a lifecycle plugin. Output language configurable.",
+  "author": {
+    "name": "Ravi Ramcharan"
+  },
+  "keywords": ["frontend", "jira", "confluence", "hyva", "magento", "shopware", "shopify", "drupal", "qa"],
+  "homepage": "https://github.com/raviramcharan/dev-frontend",
+  "repository": "https://github.com/raviramcharan/dev-frontend"
+}
