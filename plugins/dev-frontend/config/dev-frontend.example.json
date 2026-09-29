@@ -1,0 +1,34 @@
+{
+  "_readme": "Copy to ~/.claude/dev-frontend.json (personal) and/or <repo>/.claude/dev-frontend.json (per project). Project values override personal ones. 'lifecyclePlugin' is left out on purpose: the first command that needs it detects installed lifecycle plugins and asks you. Set it to a namespace (e.g. \"my-team\") or null (standalone) to skip the question. Remove this _readme key.",
+  "outputLanguage": "nl",
+  "jiraProjectKey": "PROJ",
+  "platform": "auto",
+  "moduleNamespace": "Vendor",
+  "frontendLabel": "frontend",
+  "devNote": {
+    "visibility": {
+      "type": "role",
+      "value": "Developers"
+    },
+    "privateVisibility": null
+  },
+  "branches": {
+    "sprintBranchPatterns": [
+      "sprint/*",
+      "release/sprint-*"
+    ],
+    "baseCandidates": [
+      "develop"
+    ]
+  },
+  "confluence": {
+    "spaceKey": "FE",
+    "overviewParentTitle": "FE Overzicht – [Project]"
+  },
+  "growthLog": {
+    "location": "confluence",
+    "confluenceSpaceKey": "~ravi",
+    "parentTitle": "Groei-log – Overzicht (helikopterview)",
+    "localPath": "~/.claude/growth-log"
+  }
+}
