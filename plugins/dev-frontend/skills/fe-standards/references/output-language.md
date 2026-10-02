@@ -41,12 +41,10 @@ The Dutch templates in `ticket-templates.md` are canonical. For `en`, translate 
 
 | Key | nl | en |
 |---|---|---|
-| dev_note | 🛠 Developer note | 🛠 Developer note |
-| generated_with | Gegenereerd met | Generated with |
-| sources | Bronnen | Sources |
-| status_draft / agreed / processed | Concept / Afgestemd met PO / Verwerkt | Draft / Agreed with PO / Processed |
-| visible_for | Alleen zichtbaar voor | Only visible to |
-| not_in_description | Nog niet verwerkt in de ticketbeschrijving. | Not yet processed into the ticket description. |
+| note_type: refinement / plan / testplan | Refinement / Plan / Testplan | Refinement / Plan / Testplan |
+| note_type: test-scenarios / fe-gate / docs | Testscenario's / FE-gate / Documentatie | Test scenarios / FE gate / Docs |
+| note_type: sprint-risk | Sprintrisico | Sprint risk |
+| processed | ✅ Verwerkt in de beschrijving. | ✅ Processed into the description. |
 | open_questions | Open vragen | Open questions |
 | blocking / remaining / manual | Blokkerend / Restpunten / Handmatig checken | Blocking / Remaining / Check manually |
 | fe_risks_page | Sprint [naam] – FE Risico's | Sprint [name] – FE Risks |

@@ -8,19 +8,15 @@ A developer note is a Jira comment with restricted visibility. Post with `addCom
 
 ```
 [dev-note:<type>]
-🛠 Developer note — <title> · <YYYY-MM-DD>
-<generated_with> /dev-frontend:<command> · <sources>: <ticket fields / branch + commit / agent_docs files>
-Status: <status_draft | status_agreed | status_processed>
+🛠 <note_type label> — <title>
 
----
 <content>
-
----
-_<visible_for> <role/group>. <not_in_description>_
 ```
 
-The first line is a machine tag — keep it exact and in English regardless of output language.
+The first line is a machine tag — keep it exact and in English regardless of output language; it's how existing notes are found and updated.
 Allowed `<type>` values: `refinement`, `plan`, `testplan`, `test-scenarios`, `fe-gate`, `docs`, `sprint-risk`.
+
+Keep notes compact: no dates, links, sources, status line, `---` separators or visibility footer. Say which role/group will see the note in the chat preview only.
 
 ### Visibility
 

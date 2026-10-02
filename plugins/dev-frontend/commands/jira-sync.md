@@ -30,8 +30,8 @@ Missing source → say which, skip it, continue with the rest.
 
 - **plan** (default: summary, `--full` for everything): goal & scope, acceptance criteria table (AC1…), out of scope, milestone titles only, decisions from grilling if present. Audience: PO and team — no file-level detail unless `--full`.
 - **testplan / test-scenarios / fe-gate / docs**: as-is (already human-readable), unless longer than ~25,000 characters → summary + path.
-- **Staleness:** for `fe-gate`, compare its `code=` in `.fe-checks.log` with the current `CODE_SHA`. Stale → warn and suggest re-running `/dev-frontend:fe-gate` before syncing; sync only if the user insists, and mark it "outdated since <sha>" in the note.
-- Wrap in the developer note format; `<sources>` names the file path and `CODE_SHA`.
+- **Staleness:** for `fe-gate`, compare its `code=` in `.fe-checks.log` with the current `CODE_SHA`. Stale → warn and suggest re-running `/dev-frontend:fe-gate` before syncing; sync only if the user insists, and add one line "outdated since <sha>" to the note content.
+- Wrap in the compact developer note format (`jira-conventions.md`).
 
 ## 3 — Preview and post
 

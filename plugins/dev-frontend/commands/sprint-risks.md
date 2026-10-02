@@ -45,11 +45,18 @@ They **don't block** the analysis; they become their own risk category.
 | Content / client | Waiting on copy, translations, images or client approval |
 | Overlap | Several tickets touch the same page, template, component or section → order them, merge-conflict risk |
 | Third party | Payment, GTM/tracking, Klaviyo, third-party extensions/apps |
-| Size | > 8 SP, no estimate, or carried over from a previous sprint |
+| Size | > 8 SP, no estimate (see Estimate), or carried over from a previous sprint |
+| Estimate | Main task without story points; no subtasks created; subtasks without an hour estimate (name which) |
 | Capacity | No assignee, or one person holding most FE SP |
 | Quality | Several bugs on the same area, or a ticket reopened before |
 
-Probability and impact: Low / Medium / High with a one-line reason.
+Assess probability and impact (Low / Medium / High) internally, only to rank risks most serious first. Don't show them on the page or in notes.
+
+### Estimate check — every ticket, also Not refined
+
+Fetch `subtasks`, the story points field, and per subtask `timetracking` (original estimate).
+- Story points field id differs per Jira instance: use `jira.storyPointsField` from config. Missing → find it once via field metadata (name "Story Points" / "Story point estimate") and suggest adding it to config.
+- Per ticket: SP ✅/❌ · subtasks <n> · without hours <n>. Missing items count as a refinement question (PO for SP, Dev for subtasks/hours).
 
 Optional (ask first): with a local repo, check which ticket branches exist and whether they touch the same files (`git diff --stat` per branch) to make overlap concrete. If `agent_docs/<KEY>/plan.md` files exist, use their milestone file lists for the same purpose.
 
@@ -62,14 +69,16 @@ Optional (ask first): with a local repo, check which ticket branches exist and w
 Readiness: <x>% ready (<n> ready · <n> partly · <n> not refined)
 Sprint verdict: 🟢 / 🟠 / 🔴 — <one sentence>
 
-### Top risks
-| # | Risk | Tickets | Probability | Impact | Action | Owner |
+### Top risks (most serious first)
+| # | Risk | Tickets | Action (owner) |
 
 ### Dependencies
 | Ticket | Depends on | Type | Status of dependency | Consequence |
 (+ a mermaid diagram in chat only)
 
 ### Overlap / order
+### Estimates
+| Ticket | SP | Subtasks | Without hours |
 ### Not refined — questions
 ### FE tickets without label
 ### Stand-up text (copyable, max 5 lines)
@@ -84,8 +93,40 @@ Sprint verdict: 🟢 / 🟠 / 🔴 — <one sentence>
 3. `check` → update the same risk page with an "Update <date>" section; no new page.
 4. Tables only on Confluence (no native Mermaid).
 
+### Page content — compact
+
+The page is shorter than the chat preview:
+
+```
+# <fe_risks_page>
+**Verdict:** 🟢/🟠/🔴 — <one sentence> · **Readiness:** <n> ready · <n> partly · <n> not refined (of <n>)
+
+## Top risks
+| # | Risk | Tickets | Action (owner) |
+
+## Refinement questions
+- **<KEY>** <short title>: <question> (<role>) · <question> (<role>)
+
+## Housekeeping
+- <missing labels, duplicates, board state, excluded tickets — one line each>
+```
+
+- Max 7 risks, most serious first. Dependencies and a required work order go into that risk's row or Action ("do JDP-275 before JDP-64"); no separate Dependencies or Order section.
+- Refinement questions: one line per ticket, max 2 questions. Missing SP/subtasks/hours go here.
+- Leave out: mode, date, sources footer, probability/impact, stand-up text (chat only), file lists and commit details from the branch check. Write durations instead of dates ("for 5+ days", not "since 2026-09-24").
+- `check` → an "Update" section with only new and resolved bullets.
+
 ### Follow-ups — ask each separately
 
-- High-risk tickets: post `[dev-note:sprint-risk]`?
+- High-risk tickets: post `[dev-note:sprint-risk]`? Compact content, nothing else:
+
+  ```
+  [dev-note:sprint-risk]
+  🛠 <note_type: sprint-risk> — <short risk title>
+
+  Risk: <1–3 concrete sentences; mention "not refined" or missing estimates here if relevant>
+
+  Action: <one sentence>
+  ```
 - Create missing `blocks` links in Jira? Show the list first.
 - **Growth log:** every run is an *overview moment*; each early-signalled risk the user acts on is an *early signal*. Ask: "Log this run (+ <n> signals) for your growth summary?" → `/dev-frontend:growth-log add`.

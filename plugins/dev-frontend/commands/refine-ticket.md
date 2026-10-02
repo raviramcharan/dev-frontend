@@ -32,9 +32,9 @@ Use **fe-standards**: `references/jira-conventions.md`, `references/dor-dod.md`,
    4. Label proposal (`frontendLabel`) if the ticket contains FE work and lacks the label
 
    Then ask, separately:
-   - "Post this as a developer note (visible to <role/group>)?" → post/update `[dev-note:refinement]` with status *draft*.
+   - "Post this as a developer note (visible to <role/group>)?" → post/update `[dev-note:refinement]`.
    - If proposed: "Add label `<frontend>`?"
-8. **`--apply`** (on request, after agreeing with the PO): take the latest refinement note, incorporate answered questions from the comments, show the full new description plus what changes compared with the current one. After approval: `editJiraIssue` → `description`, set note status to *processed*.
+8. **`--apply`** (on request, after agreeing with the PO): take the latest refinement note, incorporate answered questions from the comments, show the full new description plus what changes compared with the current one. After approval: `editJiraIssue` → `description`, then append the `processed` line (`output-language.md`) to the note.
 
 ## Never
 

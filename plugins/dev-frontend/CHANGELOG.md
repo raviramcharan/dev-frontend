@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+- Developer notes are compact: tag, title and content only — no date, sources, status, separators or visibility footer.
+- `/refine-ticket --apply` appends a "processed" line instead of changing a status header.
+- `/sprint-risks`: compact Confluence page (verdict, top risks, refinement questions, housekeeping) and compact `sprint-risk` note; no probability/impact shown.
+- `/sprint-risks`: new estimate check — story points on the main task, subtasks present, hours on subtasks. Optional config key `jira.storyPointsField`.
+
 ## 1.0.0 — 2026-09-29
 - First release.
 - Commands: user-story, refine-ticket, start-branch, test-scenarios, fe-gate, jira-sync, sprint-risks, growth-log.

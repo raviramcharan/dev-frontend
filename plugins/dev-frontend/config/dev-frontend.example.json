@@ -5,6 +5,9 @@
   "platform": "auto",
   "moduleNamespace": "Vendor",
   "frontendLabel": "frontend",
+  "jira": {
+    "storyPointsField": null
+  },
   "devNote": {
     "visibility": {
       "type": "role",
