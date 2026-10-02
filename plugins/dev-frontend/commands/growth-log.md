@@ -24,14 +24,20 @@ First use without config → ask the location and save it (with approval). Quart
 
 ## `add` (default when called by another command)
 
+One run = one heading = one overview moment. Signals go in a 4-column table under it (narrow on purpose — Confluence squeezes wide tables).
+
 Fields (prefill what's known, ask only what's missing):
-Date · Project · Sprint · Ticket(s) · **Type** (Overview moment / Risk / Dependency / Scope issue / Quality) · **Signalled** (1–2 sentences) · **Moment** (refinement / sprint start / during development / before delivery) · **Action** (what you did, with whom) · **Effect** (prevented / resolved earlier / scope changed / still open).
+- Heading: Project · Sprint · **Moment** (refinement / sprint start / during development / before delivery) · Date
+- Per signal: Ticket · **Signal** (max ~12 words) · **Action** (what you did, with whom; max ~12 words) · **Effect** (prevented / resolved earlier / scope changed / still open)
 
-Show the row as a preview → append after approval to the quarter table:
+Show as a preview → append after approval to the quarter page:
 
 ```
-| Date | Project | Sprint | Ticket | Type | Signalled | Moment | Action | Effect |
+### <Project> · Sprint <n> · <moment> · <YYYY-MM-DD>
+| Ticket | Signal | Action | Effect |
 ```
+
+A run without signals is just the heading. Effects updated later → edit the row in place.
 
 ## `summary`
 
@@ -42,7 +48,7 @@ For the given quarter (default: current):
 
 Overview moments: <n> of <expected: sprints × active projects> (<x>%)
 Signalled early: <n> risks/dependencies, <n> led to action
-By moment: refinement <n> · sprint start <n> · development <n> · delivery <n>
+By moment (from the headings): refinement <n> · sprint start <n> · development <n> · delivery <n>
   → the more signals land early, the stronger the overview
 
 ### 3 strongest examples (for the growth conversation)
@@ -52,4 +58,4 @@ By moment: refinement <n> · sprint start <n> · development <n> · delivery <n>
 ### Focus for next quarter
 ```
 
-Base examples and patterns **only** on logged rows. Ask for the expected number of overview moments if it isn't derivable. Offer to place the summary at the top of the quarter page.
+Overview moments = headings; signals = rows. Base examples and patterns **only** on logged rows. Ask for the expected number of overview moments if it isn't derivable. Offer to place the summary at the top of the quarter page.

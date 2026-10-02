@@ -1,5 +1,5 @@
 ---
-description: Make risks and dependencies of front-end tickets in a sprint visible — before refinement, at sprint start, or as a mid-sprint check — including tickets that aren't refined yet. Publishes under the FE Overzicht page in Confluence.
+description: Make risks and dependencies of front-end tickets in a sprint visible — before refinement, at sprint start, or as a mid-sprint check — including tickets that aren't refined yet. Publishes in your personal Confluence space under "FE Overzicht – [Project]".
 argument-hint: "[refinement|start|check] [PROJECT-KEY] [sprint name] [--lang nl|en]"
 ---
 
@@ -7,7 +7,7 @@ argument-hint: "[refinement|start|check] [PROJECT-KEY] [sprint name] [--lang nl|
 
 Arguments: `$ARGUMENTS`
 
-Use **fe-standards**: `references/dor-dod.md`, `references/jira-conventions.md`, `references/output-language.md`. Page structure follows `/sprint-overzicht`: parent "FE Overzicht – [Project]" → "Sprint [name] – FE Overzicht".
+Use **fe-standards**: `references/dor-dod.md`, `references/jira-conventions.md`, `references/output-language.md`. Pages live in your personal space: "FE Overzicht – [Project]" → the risk page.
 
 ## When to run which mode
 
@@ -88,7 +88,9 @@ Sprint verdict: 🟢 / 🟠 / 🔴 — <one sentence>
 
 ### Publish (after approval)
 
-1. Find or create the page (title from `output-language.md`: `fe_risks_page`) as a child of "Sprint [name] – FE Overzicht". Overview page missing → offer to run `/sprint-overzicht` first, or place it under "FE Overzicht – [Project]".
+1. Location — always your personal space → `confluence.overviewParentTitle` (default "FE Overzicht – [Project]") → the page (title `fe_risks_page`). No sprint-level page in between.
+   - Space key: `confluence.personalSpaceKey` → else `growthLog.confluenceSpaceKey` → else the current user's personal space (`~<accountId>` via `atlassianUserInfo`); in that last case suggest saving it to config.
+   - Project page missing → create it (empty) as part of the same approved publish; say so in the preview.
 2. `refinement` → `fe_refinement_page` title.
 3. `check` → update the same risk page with an "Update <date>" section; no new page.
 4. Tables only on Confluence (no native Mermaid).
@@ -99,26 +101,30 @@ The page is shorter than the chat preview:
 
 ```
 # <fe_risks_page>
-**Verdict:** 🟢/🟠/🔴 — <one sentence> · **Readiness:** <n> ready · <n> partly · <n> not refined (of <n>)
+**Verdict:** 🟢/🟠/🔴 <max ~20 words> · **Readiness:** <n> ready · <n> partly · <n> not refined (of <n>)
 
 ## Top risks
-| # | Risk | Tickets | Action (owner) |
+| Risk | Tickets | Action (owner) |
 
-## Refinement questions
-- **<KEY>** <short title>: <question> (<role>) · <question> (<role>)
+🛠 = <dev_note_legend>
 
 ## Housekeeping
-- <missing labels, duplicates, board state, excluded tickets — one line each>
+- <missing labels, missing links, duplicates, board state, excluded tickets — one line each>
+- <dev_notes_on>: <KEY>, <KEY>, …
 ```
 
-- Max 7 risks, most serious first. Dependencies and a required work order go into that risk's row or Action ("do JDP-275 before JDP-64"); no separate Dependencies or Order section.
-- Refinement questions: one line per ticket, max 2 questions. Missing SP/subtasks/hours go here.
-- Leave out: mode, date, sources footer, probability/impact, stand-up text (chat only), file lists and commit details from the branch check. Write durations instead of dates ("for 5+ days", not "since 2026-09-24").
+- No `#` column. Max 6 risks, most serious first.
+- Risk: max ~15 words, one idea, no sub-lists. Action: max ~12 words + owner. A required work order goes into the Action ("252 → 329 → 331").
+- Tickets with a `[dev-note:sprint-risk]` get a 🛠 after the key (`JDP-42 🛠`). The housekeeping line lists all of them, also tickets outside the top risks.
+- No refinement questions on the page — they go into the dev-notes (and stay in the chat preview).
+- Leave out: mode, date, sources footer, probability/impact, Dependencies/Order sections, stand-up text (chat only), file lists and commit details. Write durations instead of dates ("for 5+ days").
 - `check` → an "Update" section with only new and resolved bullets.
 
 ### Follow-ups — ask each separately
 
-- High-risk tickets: post `[dev-note:sprint-risk]`? Compact content, nothing else:
+Ask about dev-notes **before** publishing the page, so the 🛠 markers are right on the first publish. Notes posted later → update markers and the housekeeping line on the page (after approval).
+
+- Post `[dev-note:sprint-risk]` on high-risk tickets and on tickets with refinement questions? List them first. Compact content, nothing else:
 
   ```
   [dev-note:sprint-risk]
@@ -127,6 +133,9 @@ The page is shorter than the chat preview:
   Risk: <1–3 concrete sentences; mention "not refined" or missing estimates here if relevant>
 
   Action: <one sentence>
+
+  <questions>: <question> (<role>) · <question> (<role>)
   ```
+  The questions line holds max 2 questions (including missing SP, subtasks or hours); leave it out when there are none. Only questions, no real risk → leave out the Risk line instead.
 - Create missing `blocks` links in Jira? Show the list first.
 - **Growth log:** every run is an *overview moment*; each early-signalled risk the user acts on is an *early signal*. Ask: "Log this run (+ <n> signals) for your growth summary?" → `/dev-frontend:growth-log add`.

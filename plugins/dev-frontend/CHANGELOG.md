@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2.0 — 2026-10-02
+- `/sprint-risks`: page always in your personal space under "FE Overzicht – [Project]" (created if missing); new config key `confluence.personalSpaceKey` replaces `confluence.spaceKey`.
+- `/sprint-risks`: shorter page — no `#` column, max 6 short risks, no refinement questions; 🛠 marks tickets with a developer note.
+- `/sprint-risks`: refinement questions move into the `sprint-risk` developer note (max 2); notes are asked before publishing.
+- `/growth-log`: one heading per run, 4-column signal table (Ticket · Signal · Action · Effect); Type field dropped.
+
 ## 1.1.0 — 2026-10-02
 - Developer notes are compact: tag, title and content only — no date, sources, status, separators or visibility footer.
 - `/refine-ticket --apply` appends a "processed" line instead of changing a status header.

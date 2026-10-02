@@ -45,6 +45,9 @@ The Dutch templates in `ticket-templates.md` are canonical. For `en`, translate 
 | note_type: test-scenarios / fe-gate / docs | Testscenario's / FE-gate / Documentatie | Test scenarios / FE gate / Docs |
 | note_type: sprint-risk | Sprintrisico | Sprint risk |
 | processed | ✅ Verwerkt in de beschrijving. | ✅ Processed into the description. |
+| questions | Vragen | Questions |
+| dev_note_legend | developer note op het ticket | developer note on the ticket |
+| dev_notes_on | Developer notes op | Developer notes on |
 | open_questions | Open vragen | Open questions |
 | blocking / remaining / manual | Blokkerend / Restpunten / Handmatig checken | Blocking / Remaining / Check manually |
 | fe_risks_page | Sprint [naam] – FE Risico's | Sprint [name] – FE Risks |
