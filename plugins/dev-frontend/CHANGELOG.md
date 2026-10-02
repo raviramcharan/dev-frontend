@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 1.1.0 — 2026-10-02
 - Developer notes are compact: tag, title and content only — no date, sources, status, separators or visibility footer.
 - `/refine-ticket --apply` appends a "processed" line instead of changing a status header.
 - `/sprint-risks`: compact Confluence page (verdict, top risks, refinement questions, housekeeping) and compact `sprint-risk` note; no probability/impact shown.
