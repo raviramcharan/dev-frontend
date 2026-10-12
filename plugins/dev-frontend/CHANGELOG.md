@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.3.0 — 2026-10-12
+- `/user-story` merged into `/refine-ticket`: one command writes the ticket in the template, scores the Definition of Ready and lists open questions.
+- New **❓ Open questions** section at the end of every ticket (main task, subtask, bug), grouped per role; gaps become questions, never assumptions.
+- `/refine-ticket` no longer writes on its own: after the preview it asks — into the description, as a developer note, or not at all.
+- `/fe-gate` and `/jira-sync` removed as commands. `/test-scenarios` now asks at the end: post as developer note, save, and/or run the FE gate (`--gate` runs it directly).
+- Posting lifecycle artefacts (plan, testplan, docs) to Jira is dropped.
+
 ## 1.2.0 — 2026-10-02
 - `/sprint-risks`: page always in your personal space under "FE Overzicht – [Project]" (created if missing); new config key `confluence.personalSpaceKey` replaces `confluence.spaceKey`.
 - `/sprint-risks`: shorter page — no `#` column, max 6 short risks, no refinement questions; 🛠 marks tickets with a developer note.

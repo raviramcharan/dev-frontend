@@ -20,12 +20,9 @@ When to use which command, what to do with the result, and how to adapt the plug
 dev-frontend
 ├── skills/fe-standards/     ← the rules (one source of truth)
 └── commands/
-    ├── user-story           PO: paste-ready ticket
-    ├── refine-ticket        PO: DoR + questions → developer note
+    ├── refine-ticket        PO: ticket + DoR + questions → description / note (asks)
     ├── start-branch         branch conventions
-    ├── test-scenarios       FE test matrix
-    ├── fe-gate              FE quality gate
-    ├── jira-sync            agent_docs → developer notes
+    ├── test-scenarios       FE test matrix (+ optional FE gate, developer note)
     ├── sprint-risks         sprint oversight
     └── growth-log           quarterly evidence
 
@@ -59,20 +56,17 @@ The sprint rhythm *is* the "fixed overview moment per sprint per project" from y
 
 | Step | Command | Your part |
 |---|---|---|
-| Write/clean up the ticket (PO role) | `user-story` | Paste into Jira |
-| Check readiness before starting | `refine-ticket` | Send open questions; later `--apply` after PO agrees |
+| Write up the ticket + check readiness | `refine-ticket` | Choose: description, developer note or copy yourself; send open questions; later `--apply` after PO answers |
 | Start | `start-branch` | Pick base (`develop` or sprint branch), confirm branch name |
 | Plan → implement → QA → review | `<lifecycle>:dev-lifecycle` (or your own flow) | One phase per run |
-| Test matrix | `test-scenarios` | Review, test on DDEV/test, save or sync with results |
-| FE gate | `fe-gate` | Fix blockers, re-run until 🟢/🟠 |
+| Test matrix (+ FE gate) | `test-scenarios` | Review, test on DDEV/test; pick: post as developer note, save, and/or run the FE gate — fix blockers until 🟢/🟠 |
 | Testplan → docs → MR | `<lifecycle>:dev-lifecycle` (or your own flow) | — |
-| Make it visible in Jira | `jira-sync` | Approve per note |
 
 **Skip refine-ticket?** Fine for small bugs or Compact tickets with testable AC. `start-branch` will tell you if readiness looks weak.
 
 **test-scenarios vs a lifecycle testplan:** testplan gives AC status (✅/⬜/❌) and one scenario — good for "is it built?". test-scenarios gives the full matrix a tester executes — good for "does it work in every situation?". They complement each other; test-scenarios reads testplan when present.
 
-**Committed after the FE gate?** The gate is stamped with `CODE_SHA`; `jira-sync` warns when it's stale. Re-run it — that last small fix is often what comes back from review.
+**Committed after the FE gate?** The gate is stamped with `CODE_SHA`. Re-run `test-scenarios --gate` — that last small fix is often what comes back from review.
 
 ---
 
@@ -86,11 +80,11 @@ The sprint rhythm *is* the "fixed overview moment per sprint per project" from y
 | Partly ready | Send questions; starting is OK, mention the risk in stand-up |
 | Not refined | Don't start; back to refinement or a quick sync with the PO |
 
-### fe-gate
+### FE gate (from test-scenarios)
 
 | Result | Action |
 |---|---|
-| 🟢 GO | Save, sync, continue the lifecycle |
+| 🟢 GO | Save or post, continue the lifecycle |
 | 🟠 GO with notes | List the remaining points in the MR so the reviewer doesn't "find" them |
 | 🔴 NO-GO | Apply the proposed fixes (or fix yourself), commit, re-run. Never hand over on 🔴 |
 
@@ -113,11 +107,10 @@ The sprint rhythm *is* the "fixed overview moment per sprint per project" from y
 1. `refine-ticket SHOP-412` → *Partly ready*: no design (R3), unclear which attribute BE delivers (R5). Questions: [Design] "Is there a Figma frame for the filter chips on mobile?" [BE] "Is `material` a filterable attribute in the GraphQL response?" → posted as developer note.
 2. Answers arrive. `start-branch SHOP-412` → "Branch off which base?" → you pick `sprint/42` → `feature/SHOP-412`.
 3. Plan → implement → QA → review (e.g. `<lifecycle>:dev-lifecycle`, review against `sprint/42`).
-4. `test-scenarios` → Maintenance/Admin (attribute *Use in Layered Navigation*), 4 happy paths, 5 edge cases including a long material name on 360px. One fails; you fix and commit.
-5. `fe-gate` → 🔴: the filter toggle is an `<a>` without `href` (D3), a `console.log` remains (D7). Fixed → re-run → 🟢.
+4. `test-scenarios` → Maintenance/Admin (attribute *Use in Layered Navigation*), 4 happy paths, 5 edge cases including a long material name on 360px. You pick "post as developer note" and "also run the FE gate".
+5. FE gate → 🔴: the filter toggle is an `<a>` without `href` (D3), a `console.log` remains (D7). Fixed → `test-scenarios --gate` → 🟢. One scenario fails on test; you fix and commit.
 6. Testplan → docs → MR.
-7. `jira-sync SHOP-412 all` → plan summary, testplan, test scenarios (private), FE gate posted.
-8. At sprint start, `sprint-risks start` had flagged the missing BE link for `material` → logged as an early signal, later one of your three examples in `growth-log summary`.
+7. At sprint start, `sprint-risks start` had flagged the missing BE link for `material` → logged as an early signal, later one of your three examples in `growth-log summary`.
 
 ---
 
@@ -153,21 +146,18 @@ After editing: bump `version` in `.claude-plugin/plugin.json` and the marketplac
 | Sprint branch not in the list | Doesn't match `sprintBranchPatterns` | Add the pattern in project config |
 | Key resolved as `UPDATE-2` | Branch without ticket key | Pass the key as argument |
 | Lifecycle diff against the wrong base | Lifecycle skills often auto-detect `origin/HEAD` | Pass the base explicitly, e.g. `/<lifecycle>:branch-review sprint/42` |
-| FE gate "stale" in jira-sync | Commits after the gate | Re-run `fe-gate` |
+| FE gate stale (`code=` ≠ current commit) | Commits after the gate | Re-run `test-scenarios --gate` |
 | Duplicate notes instead of updates | First-line tag edited by hand | Keep `[dev-note:<type>]` exactly |
-| Old and new `/user-story` both show up | Local command still present | Remove it from `~/.claude/commands/` |
+| `/user-story` still shows up | Local command or older plugin version | Remove it from `~/.claude/commands/`; use `refine-ticket` |
 
 ---
 
 ## 8. Quick reference
 
 ```
-/dev-frontend:user-story <KEY>                  paste-ready ticket (chat only)
-/dev-frontend:refine-ticket <KEY> [--apply]     DoR + questions → note (→ description)
+/dev-frontend:refine-ticket <KEY> [--apply]     ticket + DoR + questions → asks: description / note / none
 /dev-frontend:start-branch <KEY>                readiness → branch (asks base)
-/dev-frontend:test-scenarios [KEY]              test matrix (chat only)
-/dev-frontend:fe-gate [KEY] [--base <b>]        FE quality gate
-/dev-frontend:jira-sync [KEY] [artefact|all]    agent_docs → developer notes
+/dev-frontend:test-scenarios [KEY] [--gate]     test matrix → asks: note / save / FE gate
 /dev-frontend:sprint-risks [refinement|start|check]
 /dev-frontend:growth-log summary [Q4-2026]
 

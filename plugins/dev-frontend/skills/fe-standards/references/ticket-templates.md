@@ -99,6 +99,25 @@ Always append after the template for a main task (text only, to copy — never c
 
 Omit FE or BE only when the main task obviously needs no work in that discipline — say so briefly instead of inventing a forced suggestion.
 
+## Open questions — all ticket types
+
+Append as the very last section (main task, subtask and bug) whenever something is missing, ambiguous or contradictory in the source ticket:
+
+```
+## ❓ Open vragen
+
+**PO**
+- [concrete vraag] — [waarom het ertoe doet / wat het blokkeert]
+
+**Design**
+- …
+```
+
+- Group per role — PO / Design / BE / FE / Klant — whoever can answer it; omit roles without questions.
+- One concrete, answerable question per bullet; most blocking first. Typical gaps: missing or untestable AC, unclear scope boundary, missing design/copy, unknown data source or BE contract, edge cases (empty/error/loading states, mobile), tracking, platform/environment.
+- Anything not derivable from the ticket becomes a question here — never fill it in as an assumption in the template above.
+- Nothing unclear → omit the section entirely (no empty section, no "none").
+
 ## Optional test plan — only when explicitly asked with "Maak een testplan"
 
 ```

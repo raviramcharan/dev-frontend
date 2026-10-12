@@ -28,7 +28,7 @@ Never create a `<DOCS>` directory yourself — `/<lifecycle>:jira-plan` decides 
 | `<DOCS>/testplan.md` | `testplan` | Read: AC status ✅/⬜/❌ |
 | `<DOCS>/docs.md` | `write-docs` | Read |
 | `<DOCS>/.lifecycle.log` | `dev-lifecycle` | Read only. **Never append** — unknown phase names break its detection |
-| `agent_docs/.reviews/*.md` | `branch-review` | Read: avoid repeating its findings in `/fe-gate` |
+| `agent_docs/.reviews/*.md` | `branch-review` | Read: avoid repeating its findings in the FE gate |
 | `<DOCS>/test-scenarios.md` | **dev-frontend** | Written only when the user asks to save scenarios |
 | `<DOCS>/fe-gate.md` | **dev-frontend** | Latest FE gate report |
 | `<DOCS>/.fe-checks.log` | **dev-frontend** | Own append-only log |
@@ -39,7 +39,6 @@ Same shape as the lifecycle log so it's familiar, but a separate file:
 
 ```
 2026-09-29T10:12:03Z  check=fe-gate  status=go|go-with-notes|no-go  code=<CODE_SHA>  note=<short>
-2026-09-29T10:30:40Z  check=jira-sync  status=pass  note=testplan,fe-gate
 ```
 
 `CODE_SHA` = last commit touching anything outside `agent_docs/` :
@@ -56,8 +55,6 @@ A gate result is **stale** when its `code=` no longer matches the current `CODE_
 /dev-frontend:refine-ticket   ← before planning (PO-facing)
 /dev-frontend:start-branch    ← before /<lifecycle>:dev-lifecycle phase 0
 /<lifecycle>:dev-lifecycle   ← plan → implement → QA → review → security
-/dev-frontend:fe-gate         ← after review (phase 4), before testplan (phase 6)
+/dev-frontend:test-scenarios  ← after review (phase 4), before testplan (phase 6); --gate adds the FE gate
 /<lifecycle>:dev-lifecycle   ← testplan → docs → MR
-/dev-frontend:test-scenarios  ← any time after implement; complements testplan
-/dev-frontend:jira-sync       ← whenever artefacts should be visible in Jira
 ```

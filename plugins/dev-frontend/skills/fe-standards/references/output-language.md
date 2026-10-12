@@ -20,7 +20,7 @@ Use these labels verbatim for the active output language. For `auto`, pick the c
 | admin_hint | *(instellingen die iemand in het admin-paneel moet aanpassen of controleren voordat/tijdens het testen — geen technische/developer-config)* | *(settings someone must change or check in the admin panel before/while testing — no technical/developer config)* |
 | result | Resultaat: | Result: |
 
-## Ticket templates (`/user-story`, `/refine-ticket`)
+## Ticket templates (`/refine-ticket`)
 
 The Dutch templates in `ticket-templates.md` are canonical. For `en`, translate the headings 1:1 and keep the emoji:
 
@@ -35,14 +35,15 @@ The Dutch templates in `ticket-templates.md` are canonical. For `en`, translate 
 | Stappen om te reproduceren | Steps to reproduce |
 | Verwacht resultaat / Huidig resultaat | Expected result / Actual result |
 | 📦 Voorgestelde subtaken | 📦 Suggested subtasks |
+| ❓ Open vragen | ❓ Open questions |
 | Dient meetbaar te zijn middels een GTM event | Must be measurable via a GTM event |
 
 ## Developer notes, reports and pages
 
 | Key | nl | en |
 |---|---|---|
-| note_type: refinement / plan / testplan | Refinement / Plan / Testplan | Refinement / Plan / Testplan |
-| note_type: test-scenarios / fe-gate / docs | Testscenario's / FE-gate / Documentatie | Test scenarios / FE gate / Docs |
+| note_type: refinement | Refinement | Refinement |
+| note_type: test-scenarios / fe-gate | Testscenario's / FE-gate | Test scenarios / FE gate |
 | note_type: sprint-risk | Sprintrisico | Sprint risk |
 | processed | ✅ Verwerkt in de beschrijving. | ✅ Processed into the description. |
 | questions | Vragen | Questions |

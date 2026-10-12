@@ -64,9 +64,10 @@ Atlassian `cloudId`: call `getAccessibleAtlassianResources` (no arguments), pick
 |---|---|
 | `references/jira-conventions.md` | Any Jira write, developer note, label, or git branch action |
 | `references/agent-docs.md` | Any command that reads lifecycle artefacts or resolves `<DOCS>` |
-| `references/ticket-templates.md` | `/user-story`, `/refine-ticket` |
-| `references/dor-dod.md` | Readiness checks (`/refine-ticket`, `/start-branch`, `/sprint-risks`) and `/fe-gate` |
-| `references/platform-standards.md` | `/fe-gate`, `/test-scenarios`; read only the detected platform's section |
+| `references/ticket-templates.md` | `/refine-ticket` |
+| `references/dor-dod.md` | Readiness checks (`/refine-ticket`, `/start-branch`, `/sprint-risks`) and the FE gate |
+| `references/platform-standards.md` | `/test-scenarios` and its FE gate; read only the detected platform's section |
+| `references/fe-gate.md` | Optional FE gate, run from `/test-scenarios` |
 | `references/output-language.md` | Before writing any human-facing output |
 
 ## Platform detection
@@ -79,7 +80,7 @@ Use `platform` from config unless it is `auto`. Otherwise check in this order, s
 - **Shopify**: `shopify.app.toml` / `shopify.theme.toml`, or `sections/`, `templates/`, `snippets/`, `layout/theme.liquid`
 - **Drupal**: `composer.json` requires `drupal/core`, or `web/modules/custom/` / `web/themes/custom/`
 
-Not confident → ask. Without a repo (e.g. `/user-story`), default to Hyvä unless the ticket says otherwise.
+Not confident → ask. Without a repo (e.g. `/refine-ticket`), default to Hyvä unless the ticket says otherwise.
 
 ## Jira key from a branch
 

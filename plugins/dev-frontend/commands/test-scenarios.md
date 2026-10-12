@@ -1,15 +1,15 @@
 ---
-description: Generate a structured test scenario matrix (Maintenance/Admin, Happy Path, Edge Cases) from the current branch's changes, cross-referenced with the Jira ticket. Output only — nothing is posted anywhere unless asked afterwards.
-argument-hint: "[<ISSUE-KEY>] [--lang nl|en|auto] [--base <branch>]"
+description: Generate a structured test scenario matrix (Maintenance/Admin, Happy Path, Edge Cases) from the current branch's changes, cross-referenced with the Jira ticket. Prints in chat, then asks whether to post it as a developer note, save it, or also run the FE gate.
+argument-hint: "[<ISSUE-KEY>] [--lang nl|en|auto] [--base <branch>] [--gate]"
 ---
 
 # /test-scenarios
 
 Arguments: `$ARGUMENTS`
 
-Analyse the changes on this branch and generate a structured test scenario matrix — grouped into fixed categories that go beyond the happy path — for a developer or PO to execute manually. Print the result in chat. Do **not** post it anywhere (no Jira comment, no file write) unless the user explicitly asks afterwards.
+Analyse the changes on this branch and generate a structured test scenario matrix — grouped into fixed categories that go beyond the happy path — for a developer or PO to execute manually. Print the result in chat. Do **not** post or save it until the user chooses so at the end.
 
-Use the **fe-standards** skill: config, output language, Jira-key extraction, subtask handling, platform detection (SKILL.md); admin surfaces per platform (`references/platform-standards.md`); fixed labels (`references/output-language.md`); lifecycle artefacts (`references/agent-docs.md`).
+Use the **fe-standards** skill: config, output language, Jira-key extraction, subtask handling, platform detection (SKILL.md); admin surfaces per platform (`references/platform-standards.md`); fixed labels (`references/output-language.md`); lifecycle artefacts (`references/agent-docs.md`); developer notes (`references/jira-conventions.md`); optional FE gate (`references/fe-gate.md`).
 
 ## Step 1: Determine the Jira issue key
 
@@ -144,6 +144,15 @@ Section emoji (use exactly these, every time):
 - Ground every scenario in the actual diff — no scenarios for untouched code. Use the ticket's acceptance criteria (and the parent's, if applicable) to sanity-check you haven't missed a scenario the ticket implies but the diff doesn't make obvious.
 - Print in chat only.
 
-## After the output (one line, nothing more)
+## After the output
 
-Offer the follow-ups without doing them: save to `<DOCS>/test-scenarios.md`, and/or post as a private developer note via `/dev-frontend:jira-sync <KEY> test-scenarios`. Only act if the user explicitly asks.
+Ask in one short block — and act only on what the user picks (one or more):
+
+> 1. **Post as developer note** on <KEY> (visible to <role/group>)
+> 2. **Save** to `<DOCS>/test-scenarios.md`
+> 3. **Also run the FE gate** (WCAG, performance, translations, debug code, AC coverage → 🟢/🟠/🔴)
+
+- 1 → post/update `[dev-note:test-scenarios]` per `references/jira-conventions.md`, with `devNote.privateVisibility` (fallback `devNote.visibility`). Existing note → show the diff and **keep result markers and remarks the user already filled in**.
+- 2 → write the file (only if `<DOCS>` exists or the user confirms creating it).
+- 3 → run `references/fe-gate.md`, reusing this run's key, ticket, base and diff.
+- `--gate` → run the FE gate straight after the scenarios without asking; still ask about 1 and 2.

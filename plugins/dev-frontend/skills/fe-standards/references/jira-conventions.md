@@ -14,7 +14,7 @@ A developer note is a Jira comment with restricted visibility. Post with `addCom
 ```
 
 The first line is a machine tag — keep it exact and in English regardless of output language; it's how existing notes are found and updated.
-Allowed `<type>` values: `refinement`, `plan`, `testplan`, `test-scenarios`, `fe-gate`, `docs`, `sprint-risk`.
+Allowed `<type>` values: `refinement`, `test-scenarios`, `fe-gate`, `sprint-risk`.
 
 Keep notes compact: no dates, links, sources, status line, `---` separators or visibility footer. Say which role/group will see the note in the chat preview only.
 
@@ -39,7 +39,7 @@ If visibility cannot be set (role/group doesn't exist, permission error): **post
 
 ### From note to description
 
-Only on explicit request (e.g. `/dev-frontend:refine-ticket PROJ-1 --apply`): show the full new description as a preview, then `editJiraIssue` on `description` after approval and set the note status to *processed*.
+Only on explicit request (`/dev-frontend:refine-ticket` → "Into the description", or `--apply` after the PO answered): show the full new description as a preview, then `editJiraIssue` on `description` after approval; with `--apply`, append the `processed` line to the note.
 
 ## Labels
 

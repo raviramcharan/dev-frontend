@@ -37,6 +37,6 @@ Ask separately, act only on yes:
 ## Hand-over
 
 End with one line:
-> Next: `/<lifecycle>:dev-lifecycle <KEY>` (plan → implement → QA → review). Run `/dev-frontend:fe-gate <KEY>` after the review phase.
+> Next: `/<lifecycle>:dev-lifecycle <KEY>` (plan → implement → QA → review). Run `/dev-frontend:test-scenarios <KEY> --gate` after the review phase.
 
-If no lifecycle plugin is configured, suggest `/dev-frontend:test-scenarios` and `/dev-frontend:fe-gate` after implementing instead.
+If no lifecycle plugin is configured, suggest `/dev-frontend:test-scenarios <KEY> --gate` after implementing instead.
