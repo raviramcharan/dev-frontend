@@ -52,9 +52,9 @@ A gate result is **stale** when its `code=` no longer matches the current `CODE_
 ## Where dev-frontend fits in the lifecycle
 
 ```
-/dev-frontend:refine-ticket   ← before planning (PO-facing)
-/dev-frontend:start-branch    ← before /<lifecycle>:dev-lifecycle phase 0
+/dev-frontend:refine   ← before planning (PO-facing)
+/dev-frontend:start    ← before /<lifecycle>:dev-lifecycle phase 0
 /<lifecycle>:dev-lifecycle   ← plan → implement → QA → review → security
-/dev-frontend:test-scenarios  ← after review (phase 4), before testplan (phase 6); --gate adds the FE gate
+/dev-frontend:test  ← after review (phase 4), before testplan (phase 6); --gate adds the FE gate
 /<lifecycle>:dev-lifecycle   ← testplan → docs → MR
 ```

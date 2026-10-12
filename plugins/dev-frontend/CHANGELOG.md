@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.4.0 — 2026-10-12
+- Shorter command names: `/refine-ticket` → `/refine`, `/start-branch` → `/start`, `/test-scenarios` → `/test`. Developer-note tags and `agent_docs` file names are unchanged, so existing notes keep updating.
+- `/refine`: the ticket comes last as one uninterrupted, copy-paste-ready block; DoR, template choice and label proposal stay above it.
+
 ## 1.3.0 — 2026-10-12
 - `/user-story` merged into `/refine-ticket`: one command writes the ticket in the template, scores the Definition of Ready and lists open questions.
 - New **❓ Open questions** section at the end of every ticket (main task, subtask, bug), grouped per role; gaps become questions, never assumptions.

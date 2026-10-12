@@ -1,5 +1,5 @@
 ---
-description: Evidence for the helicopter-view growth goal — records overview moments and early-signalled risks (mostly offered automatically by sprint-risks and the FE gate in test-scenarios) and produces a quarterly summary for the growth conversation.
+description: Evidence for the helicopter-view growth goal — records overview moments and early-signalled risks (mostly offered automatically by sprint-risks and the FE gate in test) and produces a quarterly summary for the growth conversation.
 argument-hint: "[summary [Q<n>-<year>] | add] [--lang nl|en]"
 ---
 
@@ -9,7 +9,7 @@ Arguments: `$ARGUMENTS`
 
 Makes the SMART goal *helicopter view FE* measurable: one fixed overview moment per sprint per active project, and how often an early signal led to action.
 
-You rarely call `add` yourself — `/dev-frontend:sprint-risks` and the FE gate (in `/dev-frontend:test-scenarios`) offer it at the right moment with fields prefilled. The command you run yourself is `summary`, once a quarter.
+You rarely call `add` yourself — `/dev-frontend:sprint-risks` and the FE gate (in `/dev-frontend:test`) offer it at the right moment with fields prefilled. The command you run yourself is `summary`, once a quarter.
 
 ## Storage
 

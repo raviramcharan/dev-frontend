@@ -20,9 +20,9 @@ When to use which command, what to do with the result, and how to adapt the plug
 dev-frontend
 ├── skills/fe-standards/     ← the rules (one source of truth)
 └── commands/
-    ├── refine-ticket        PO: ticket + DoR + questions → description / note (asks)
-    ├── start-branch         branch conventions
-    ├── test-scenarios       FE test matrix (+ optional FE gate, developer note)
+    ├── refine               PO: ticket + DoR + questions → description / note (asks)
+    ├── start                branch conventions
+    ├── test                 FE test matrix (+ optional FE gate, developer note)
     ├── sprint-risks         sprint oversight
     └── growth-log           quarterly evidence
 
@@ -56,23 +56,23 @@ The sprint rhythm *is* the "fixed overview moment per sprint per project" from y
 
 | Step | Command | Your part |
 |---|---|---|
-| Write up the ticket + check readiness | `refine-ticket` | Choose: description, developer note or copy yourself; send open questions; later `--apply` after PO answers |
-| Start | `start-branch` | Pick base (`develop` or sprint branch), confirm branch name |
+| Write up the ticket + check readiness | `refine` | Choose: description, developer note or copy yourself; send open questions; later `--apply` after PO answers |
+| Start | `start` | Pick base (`develop` or sprint branch), confirm branch name |
 | Plan → implement → QA → review | `<lifecycle>:dev-lifecycle` (or your own flow) | One phase per run |
-| Test matrix (+ FE gate) | `test-scenarios` | Review, test on DDEV/test; pick: post as developer note, save, and/or run the FE gate — fix blockers until 🟢/🟠 |
+| Test matrix (+ FE gate) | `test` | Review, test on DDEV/test; pick: post as developer note, save, and/or run the FE gate — fix blockers until 🟢/🟠 |
 | Testplan → docs → MR | `<lifecycle>:dev-lifecycle` (or your own flow) | — |
 
-**Skip refine-ticket?** Fine for small bugs or Compact tickets with testable AC. `start-branch` will tell you if readiness looks weak.
+**Skip refine?** Fine for small bugs or Compact tickets with testable AC. `start` will tell you if readiness looks weak.
 
-**test-scenarios vs a lifecycle testplan:** testplan gives AC status (✅/⬜/❌) and one scenario — good for "is it built?". test-scenarios gives the full matrix a tester executes — good for "does it work in every situation?". They complement each other; test-scenarios reads testplan when present.
+**test vs a lifecycle testplan:** testplan gives AC status (✅/⬜/❌) and one scenario — good for "is it built?". test gives the full matrix a tester executes — good for "does it work in every situation?". They complement each other; test reads testplan when present.
 
-**Committed after the FE gate?** The gate is stamped with `CODE_SHA`. Re-run `test-scenarios --gate` — that last small fix is often what comes back from review.
+**Committed after the FE gate?** The gate is stamped with `CODE_SHA`. Re-run `test --gate` — that last small fix is often what comes back from review.
 
 ---
 
 ## 4. Acting on results
 
-### refine-ticket / start-branch → DoR
+### refine / start → DoR
 
 | Result | Action |
 |---|---|
@@ -80,7 +80,7 @@ The sprint rhythm *is* the "fixed overview moment per sprint per project" from y
 | Partly ready | Send questions; starting is OK, mention the risk in stand-up |
 | Not refined | Don't start; back to refinement or a quick sync with the PO |
 
-### FE gate (from test-scenarios)
+### FE gate (from test)
 
 | Result | Action |
 |---|---|
@@ -104,11 +104,11 @@ The sprint rhythm *is* the "fixed overview moment per sprint per project" from y
 
 *Fictional ticket SHOP-412 "Product listing — filter on material" (Hyvä), sprint 42.*
 
-1. `refine-ticket SHOP-412` → *Partly ready*: no design (R3), unclear which attribute BE delivers (R5). Questions: [Design] "Is there a Figma frame for the filter chips on mobile?" [BE] "Is `material` a filterable attribute in the GraphQL response?" → posted as developer note.
-2. Answers arrive. `start-branch SHOP-412` → "Branch off which base?" → you pick `sprint/42` → `feature/SHOP-412`.
+1. `refine SHOP-412` → *Partly ready*: no design (R3), unclear which attribute BE delivers (R5). Questions: [Design] "Is there a Figma frame for the filter chips on mobile?" [BE] "Is `material` a filterable attribute in the GraphQL response?" → posted as developer note.
+2. Answers arrive. `start SHOP-412` → "Branch off which base?" → you pick `sprint/42` → `feature/SHOP-412`.
 3. Plan → implement → QA → review (e.g. `<lifecycle>:dev-lifecycle`, review against `sprint/42`).
-4. `test-scenarios` → Maintenance/Admin (attribute *Use in Layered Navigation*), 4 happy paths, 5 edge cases including a long material name on 360px. You pick "post as developer note" and "also run the FE gate".
-5. FE gate → 🔴: the filter toggle is an `<a>` without `href` (D3), a `console.log` remains (D7). Fixed → `test-scenarios --gate` → 🟢. One scenario fails on test; you fix and commit.
+4. `test` → Maintenance/Admin (attribute *Use in Layered Navigation*), 4 happy paths, 5 edge cases including a long material name on 360px. You pick "post as developer note" and "also run the FE gate".
+5. FE gate → 🔴: the filter toggle is an `<a>` without `href` (D3), a `console.log` remains (D7). Fixed → `test --gate` → 🟢. One scenario fails on test; you fix and commit.
 6. Testplan → docs → MR.
 7. At sprint start, `sprint-risks start` had flagged the missing BE link for `material` → logged as an early signal, later one of your three examples in `growth-log summary`.
 
@@ -142,22 +142,22 @@ After editing: bump `version` in `.claude-plugin/plugin.json` and the marketplac
 | Output in the wrong language | `auto` picked up the ticket language | Set `outputLanguage` explicitly or use `--lang` |
 | "No active sprint" | Sprint not started | Use `sprint-risks refinement` or pass the sprint name |
 | Tickets missing from sprint analysis | `frontend` label missing | Listed under "without label"; add after approval |
-| `start-branch` stops immediately | Dirty working tree | Commit or stash first |
+| `start` stops immediately | Dirty working tree | Commit or stash first |
 | Sprint branch not in the list | Doesn't match `sprintBranchPatterns` | Add the pattern in project config |
 | Key resolved as `UPDATE-2` | Branch without ticket key | Pass the key as argument |
 | Lifecycle diff against the wrong base | Lifecycle skills often auto-detect `origin/HEAD` | Pass the base explicitly, e.g. `/<lifecycle>:branch-review sprint/42` |
-| FE gate stale (`code=` ≠ current commit) | Commits after the gate | Re-run `test-scenarios --gate` |
+| FE gate stale (`code=` ≠ current commit) | Commits after the gate | Re-run `test --gate` |
 | Duplicate notes instead of updates | First-line tag edited by hand | Keep `[dev-note:<type>]` exactly |
-| `/user-story` still shows up | Local command or older plugin version | Remove it from `~/.claude/commands/`; use `refine-ticket` |
+| `/user-story` still shows up | Local command or older plugin version | Remove it from `~/.claude/commands/`; use `refine` |
 
 ---
 
 ## 8. Quick reference
 
 ```
-/dev-frontend:refine-ticket <KEY> [--apply]     ticket + DoR + questions → asks: description / note / none
-/dev-frontend:start-branch <KEY>                readiness → branch (asks base)
-/dev-frontend:test-scenarios [KEY] [--gate]     test matrix → asks: note / save / FE gate
+/dev-frontend:refine <KEY> [--apply]   ticket + DoR + questions → asks: description / note / none
+/dev-frontend:start <KEY>              readiness → branch (asks base)
+/dev-frontend:test [KEY] [--gate]      test matrix → asks: note / save / FE gate
 /dev-frontend:sprint-risks [refinement|start|check]
 /dev-frontend:growth-log summary [Q4-2026]
 

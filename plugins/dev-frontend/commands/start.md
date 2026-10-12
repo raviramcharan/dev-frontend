@@ -4,7 +4,7 @@ argument-hint: "<TICKET-KEY>"
 allowed-tools: Bash(git status:*), Bash(git fetch:*), Bash(git branch:*), Bash(git log:*), Bash(git rev-parse:*), Bash(git for-each-ref:*)
 ---
 
-# /start-branch
+# /start
 
 Ticket: `$ARGUMENTS`
 
@@ -17,7 +17,7 @@ Use **fe-standards**: `references/jira-conventions.md` (Branches), `references/d
 1. `getJiraIssue` (`*all`, comments, issue links).
 2. Existing `[dev-note:refinement]` → use its DoR score and check which open questions have been answered in comments since. None → quick DoR score now.
 3. Linked `is blocked by` / `depends on` issues not Done → report as blockers.
-4. Ready → continue. Partly ready / Not refined / blocked → show the open points and ask: "Start anyway, run `/dev-frontend:refine-ticket` first, or send the questions first?" Don't continue on your own.
+4. Ready → continue. Partly ready / Not refined / blocked → show the open points and ask: "Start anyway, run `/dev-frontend:refine` first, or send the questions first?" Don't continue on your own.
 
 ## 2 — Branch
 
@@ -37,6 +37,6 @@ Ask separately, act only on yes:
 ## Hand-over
 
 End with one line:
-> Next: `/<lifecycle>:dev-lifecycle <KEY>` (plan → implement → QA → review). Run `/dev-frontend:test-scenarios <KEY> --gate` after the review phase.
+> Next: `/<lifecycle>:dev-lifecycle <KEY>` (plan → implement → QA → review). Run `/dev-frontend:test <KEY> --gate` after the review phase.
 
-If no lifecycle plugin is configured, suggest `/dev-frontend:test-scenarios <KEY> --gate` after implementing instead.
+If no lifecycle plugin is configured, suggest `/dev-frontend:test <KEY> --gate` after implementing instead.

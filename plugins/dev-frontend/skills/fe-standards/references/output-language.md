@@ -2,7 +2,7 @@
 
 Use these labels verbatim for the active output language. For `auto`, pick the column matching the ticket language (fall back to `nl`).
 
-## Test scenarios (`/test-scenarios`)
+## Test scenarios (`/test`)
 
 | Key | nl | en |
 |---|---|---|
@@ -20,7 +20,7 @@ Use these labels verbatim for the active output language. For `auto`, pick the c
 | admin_hint | *(instellingen die iemand in het admin-paneel moet aanpassen of controleren voordat/tijdens het testen — geen technische/developer-config)* | *(settings someone must change or check in the admin panel before/while testing — no technical/developer config)* |
 | result | Resultaat: | Result: |
 
-## Ticket templates (`/refine-ticket`)
+## Ticket templates (`/refine`)
 
 The Dutch templates in `ticket-templates.md` are canonical. For `en`, translate the headings 1:1 and keep the emoji:
 

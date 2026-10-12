@@ -39,7 +39,7 @@ If visibility cannot be set (role/group doesn't exist, permission error): **post
 
 ### From note to description
 
-Only on explicit request (`/dev-frontend:refine-ticket` → "Into the description", or `--apply` after the PO answered): show the full new description as a preview, then `editJiraIssue` on `description` after approval; with `--apply`, append the `processed` line to the note.
+Only on explicit request (`/dev-frontend:refine` → "Into the description", or `--apply` after the PO answered): show the full new description as a preview, then `editJiraIssue` on `description` after approval; with `--apply`, append the `processed` line to the note.
 
 ## Labels
 

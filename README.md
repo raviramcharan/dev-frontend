@@ -6,9 +6,9 @@ A Claude Code plugin for front-end work on Jira-based e-commerce projects (Hyvä
 
 | Command | What it does |
 |---|---|
-| `/dev-frontend:refine-ticket <KEY>` | Rewrites a ticket into the template (Compact, Extended or Bug) with a Definition of Ready score and open questions per role; asks whether to write it into the description, as a developer note, or not at all |
-| `/dev-frontend:start-branch <KEY>` | Creates the branch by convention and asks which base to branch off |
-| `/dev-frontend:test-scenarios [KEY]` | Test matrix from the diff: Maintenance/Admin, Happy Path, Edge Cases; then asks to post it as a developer note, save it, or also run the FE gate (WCAG, Core Web Vitals, translations → go/no-go) |
+| `/dev-frontend:refine <KEY>` | Rewrites a ticket into the template (Compact, Extended or Bug) with a Definition of Ready score and open questions per role; asks whether to write it into the description, as a developer note, or not at all |
+| `/dev-frontend:start <KEY>` | Creates the branch by convention and asks which base to branch off |
+| `/dev-frontend:test [KEY]` | Test matrix from the diff: Maintenance/Admin, Happy Path, Edge Cases; then asks to post it as a developer note, save it, or also run the FE gate (WCAG, Core Web Vitals, translations → go/no-go) |
 | `/dev-frontend:sprint-risks` | Readiness, risks and dependencies per sprint, published to Confluence |
 | `/dev-frontend:growth-log summary` | Quarterly overview of risks you flagged early |
 
@@ -25,7 +25,7 @@ Output is Dutch by default; set `outputLanguage` to `en` or `auto`, or add `--la
 
   Then run `/mcp` in Claude Code and sign in to Atlassian. The commands use its tool names (`getJiraIssue`, `addCommentToJiraIssue`, …); community Jira servers name their tools differently and may not work reliably.
 
-Without the MCP, `test-scenarios` (and its FE gate) still works from `agent_docs/<KEY>/issue.md` and the diff, `start-branch` still creates the branch, and `growth-log` works with `location: "local"`. Posting developer notes and `sprint-risks` need it.
+Without the MCP, `test` (and its FE gate) still works from `agent_docs/<KEY>/issue.md` and the diff, `start` still creates the branch, and `growth-log` works with `location: "local"`. Posting developer notes and `sprint-risks` need it.
 
 ## Installation
 

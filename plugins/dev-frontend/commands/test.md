@@ -3,7 +3,7 @@ description: Generate a structured test scenario matrix (Maintenance/Admin, Happ
 argument-hint: "[<ISSUE-KEY>] [--lang nl|en|auto] [--base <branch>] [--gate]"
 ---
 
-# /test-scenarios
+# /test
 
 Arguments: `$ARGUMENTS`
 

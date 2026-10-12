@@ -3,11 +3,11 @@ description: Refine a Jira ticket — Definition of Ready score, open questions 
 argument-hint: "<TICKET-KEY> [--lang nl|en] [--apply] [Maak een testplan]"
 ---
 
-# /refine-ticket
+# /refine
 
 Arguments: `$ARGUMENTS`
 
-One command to write up and check a ticket: it rewrites the ticket into the right template, scores it against the Definition of Ready and lists what the PO still has to answer. Run it before `/<lifecycle>:jira-plan` — jira-plan's grilling clarifies things for *you*; refine-ticket surfaces what the *PO* still has to answer.
+One command to write up and check a ticket: it rewrites the ticket into the right template, scores it against the Definition of Ready and lists what the PO still has to answer. Run it before `/<lifecycle>:jira-plan` — jira-plan's grilling clarifies things for *you*; refine surfaces what the *PO* still has to answer.
 
 Use **fe-standards**: config + output language (SKILL.md), `references/jira-conventions.md`, `references/dor-dod.md`, `references/ticket-templates.md`, `references/output-language.md`.
 
@@ -40,8 +40,14 @@ You are a highly experienced coach of product owners at an e-commerce agency. Yo
 
 1. Template choice + reason in one sentence
 2. DoR table (criterion, status, source) + verdict
-3. The ticket — Jira-compatible Markdown (`#` headings, `-` lists), no empty sections, copy-paste-ready, ending with **❓ Open questions**
-4. Label proposal (`frontendLabel`) if the ticket contains FE work and lacks the label
+3. Label proposal (`frontendLabel`) if the ticket contains FE work and lacks the label
+4. A line `---`, then **the ticket — last, as one uninterrupted block, 1:1 copy-paste-ready for Jira**
+
+**Copy-paste rules for the ticket block (strict):**
+- Starts at the template's first heading, ends with **❓ Open questions** (or the last template section when there are none). Nothing before or after it inside the block.
+- No meta-commentary ("here is the ticket", "updated version"), no sources, no DoR references, no notes to the user — those belong above the `---`.
+- Jira-compatible Markdown: `#` headings, `-` list items, no tables, no HTML, no empty sections, no placeholders like `[TBD]` — unknowns go into Open questions.
+- Plain Markdown, not wrapped in a code fence, so it renders and pastes with formatting.
 
 Then ask — and wait for the answer:
 
@@ -65,4 +71,4 @@ Then ask — and wait for the answer:
 
 ## Close
 
-Partly ready / Not refined → one sentence on what blocks the ticket, and suggest sending the questions before starting. Ready → next step: `/dev-frontend:start-branch <KEY>`.
+Partly ready / Not refined → one sentence on what blocks the ticket, and suggest sending the questions before starting. Ready → next step: `/dev-frontend:start <KEY>`.

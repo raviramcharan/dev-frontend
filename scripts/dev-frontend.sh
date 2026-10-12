@@ -127,7 +127,7 @@ cmd_install() {
   install_config
   [[ -f "$CONFIG" ]] && set_lifecycle
   old_commands
-  say "Done. Restart Claude Code, then try: /${PLUGIN}:refine-ticket <KEY>"
+  say "Done. Restart Claude Code, then try: /${PLUGIN}:refine <KEY>"
 }
 
 cmd_update() {

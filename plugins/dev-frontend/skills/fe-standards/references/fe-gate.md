@@ -1,6 +1,6 @@
-# FE gate — optional check after `/test-scenarios`
+# FE gate — optional check after `/test`
 
-Not a command of its own: `/dev-frontend:test-scenarios` offers it at the end ("Also run the FE gate?") or runs it directly with `--gate`. It reuses the key, ticket, base and diff that test-scenarios already loaded — don't fetch them again.
+Not a command of its own: `/dev-frontend:test` offers it at the end ("Also run the FE gate?") or runs it directly with `--gate`. It reuses the key, ticket, base and diff that test already loaded — don't fetch them again.
 
 Goal: deliver right the first time. A lifecycle `branch-review` covers bugs, risks and code quality generically; this gate covers what front-end review keeps catching: accessibility, performance, translations, platform conventions and whether the tests were actually run.
 
@@ -8,7 +8,7 @@ Uses `dor-dod.md` (D1–D10), the platform section of `platform-standards.md`, `
 
 ## 1 — Context
 
-- Key, ticket (+ parent), base and diff: reuse from test-scenarios.
+- Key, ticket (+ parent), base and diff: reuse from test.
 - Lifecycle artefacts (if `lifecyclePlugin` is set): `<DOCS>/plan.md` (AC1…), `<DOCS>/testplan.md`, latest `agent_docs/.reviews/*.md` for this branch. **Don't repeat findings the branch-review already reported** — reference them in one line ("see review 2026-09-29-1030") instead.
 - `git status --porcelain` (excluding `agent_docs/`) not clean → report; uncommitted changes are not part of the gate. Suggest committing first so the result can be stamped.
 - `git log --oneline origin/<base>..HEAD` for the conventions check.
